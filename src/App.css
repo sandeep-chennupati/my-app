@@ -1,0 +1,74 @@
+.App {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+@media only screen 
+  and (max-width: 667px) {
+  .c-group, .c-group__header {
+    width: 100%;
+  }
+  .c-group__label {
+    width: 70%;
+  }
+}
+
+@media only screen 
+  and (min-width: 668px) 
+  and (max-width:992px) {
+  .c-group, .c-group__header {
+    width: 60%;
+  }
+  .c-group__label {
+    width: 80%;
+  }
+}
+
+@media only screen 
+  and (min-width: 992px)  {
+  .c-group, .c-group__header {
+    width: 40%;
+  }
+  .c-group__label {
+    width: 80%;
+  }
+}
+
+.c-group__item:first-child {
+  border-top: 1px solid rgba(0,0,0,.125);
+}
+
+.c-group__item {
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.c-group__display {
+  display: block;
+}
+
+.c-group__selection {
+  font-size: 0.80em !important;
+  font-weight: 400 !important;
+  margin: 5px 0;
+  display: block;
+}
+
+.c-group__input {
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.c-group__input input, .c-group__label label {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.83em;
+}
+
+.c-group__label {
+  display: inline-block;
+  border-right: 1px solid rgba(0,0,0,.125);
+  padding: 12px;
+  vertical-align: top;
+}
+
