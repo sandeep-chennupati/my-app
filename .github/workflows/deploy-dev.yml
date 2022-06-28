@@ -1,0 +1,41 @@
+name: Development Build and Deploy
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '.github/workflows/**'
+      - '**.md'
+env:
+  URL: dev.custom-checkbox.org
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: development
+      url: https://${{ env.URL }}
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+      
+      # https://github.com/actions/checkout#push-a-commit-using-the-built-in-token
+      - name: Set GitHub Actions as Commit Author
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+      
+      - name: Build
+        run: |
+          cd ..
+          npm install
+          npm start
+      
+      - name: Push files to target
+        run: |
+          cp -r build/dist/* deploy
+          cd deploy
+          touch .nojekyll
+          echo ${{ env.URL }} > CNAME
+          git add .
+          git commit -m $GITHUB_SHA
+          git push
