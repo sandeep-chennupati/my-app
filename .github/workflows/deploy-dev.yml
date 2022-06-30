@@ -35,7 +35,7 @@ jobs:
         git remote set-url origin https://${github_token}@github.com/${repository}
         npm run deploy
       env:
-        user_name: sandeep-chennupati
-        user_email: sandeep.chennupati@teladochealth.com
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
         github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
-        repository: sandeep-chennupati/my-app
+        repository: ${{ github.repository }}
