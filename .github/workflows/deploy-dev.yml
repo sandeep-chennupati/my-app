@@ -1,41 +1,41 @@
-name: Development Build and Deploy
+name: CI/CD
+
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-      - '.github/workflows/**'
-      - '**.md'
-env:
-  URL: dev.custom-checkbox.org
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
-    environment:
-      name: development
-      url: https://${{ env.URL }}
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
     steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-      
-      # https://github.com/actions/checkout#push-a-commit-using-the-built-in-token
-      - name: Set GitHub Actions as Commit Author
-        run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-      
-      - name: Build
-        run: |
-          cd ..
-          npm install
-          npm start
-      
-      - name: Push files to target
-        run: |
-          cp -r build/dist/* deploy
-          cd deploy
-          touch .nojekyll
-          echo ${{ env.URL }} > CNAME
-          git add .
-          git commit -m $GITHUB_SHA
-          git push
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build
+
+    - name: Deploy
+      run: |
+        git config --global user.name $user_name
+        git config --global user.email $user_email
+        git remote set-url origin https://${github_token}@github.com/${repository}
+        npm run deploy
+      env:
+        user_name: 'sandeep-chennupati'
+        user_email: 'sandeep.chennupati@teladochealth.com'
+        github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+        repository: ${{ github.repository }}
