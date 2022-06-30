@@ -4,11 +4,6 @@
   "private": true,
   "homepage": "https://sandeep-chennupati.github.io/my-app/",
   "dependencies": {
-    "@livongo/browserslist-config": "1.0.1",
-    "@livongo/configs": "0.7.1",
-    "@livongo/pulse": "0.14.0",
-    "@livongo/utilities": "0.1.4",
-    "@livongo/valve": "2.5.3",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
