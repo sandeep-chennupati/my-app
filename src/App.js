@@ -1,7 +1,4 @@
 import './App.css';
-import DatePicker from '@livongo/pulse/ui/DatePicker';
-import Label from '@livongo/pulse/ui/Label';
-import 'react-day-picker/dist/style.css';
 
 function App() {
   return (
@@ -43,15 +40,6 @@ function App() {
             <input tabIndex="0"  id="psoriasis" type="checkbox"/></div>
         </div>
       </div>
-      <DatePicker
-        id="dateInputId"
-        label={<Label>Date</Label>}
-        name="date"
-        onChange={() => {}}
-        onHideCalendar={function noRefCheck() {}}
-        onInvalid={function noRefCheck() {}}
-        onShowCalendar={function noRefCheck() {}}
-      />
     </div>
   );
 }
