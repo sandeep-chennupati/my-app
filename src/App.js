@@ -16,6 +16,8 @@ function App() {
             <input tabIndex="0" id="melanoma" type="checkbox"/></div>
         </div>
 
+        <h1>heading 1</h1>
+
         <div className="c-group__item">
           <div className="c-group__label">
             <label className="c-group__display" htmlFor="otc">
